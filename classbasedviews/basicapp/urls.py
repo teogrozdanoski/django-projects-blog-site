@@ -1,4 +1,4 @@
-"""blogsite URL Configuration
+"""classbasedviews URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -14,9 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
+from . import views
+
+app_name = "basicapp"
 
 urlpatterns = [
-    path('', include('blog.urls')),
-    path('admin/', admin.site.urls),
+    # path('', views.IndexView.as_view(), name='home'),
+    path('', views.SchoolListView.as_view(), name='list'),
+    path('<int:pk>/', views.SchoolDetailView.as_view(), name='detail'),
+    path('create/', views.SchoolCreateView.as_view(), name='create'),
+    path('update/<int:pk>/', views.SchoolUpdateView.as_view(), name='update'),
+    path('delete/<int:pk>/', views.SchoolDeleteView.as_view(), name='delete'),
 ]

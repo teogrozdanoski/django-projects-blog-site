@@ -1,0 +1,25 @@
+{% extends "basicapp/basicapp_base.html" %}
+{% block body_block %}
+
+<div class="jumbotron">
+    <h1>Welcome to the school detail page</h1>
+    <h2>School details:</h2>
+    <p><strong>Name:</strong> {{ school_detail.name }}</p>
+    <p><strong>Principal:</strong> {{ school_detail.principal }}</p>
+    <p><strong>Location:</strong> {{ school_detail.location }}</p>
+    {% if school_detail.students.all %}
+        <h3>Students:</h3>
+        {% for s in school_detail.students.all %}
+            <p>{{ s.name }} who is {{ s.age }} years old.</p>
+        {% endfor %}
+    {% else %}
+        <h3>No students are enrolled here.</h3>
+    {% endif %}
+</div>
+
+<div class="container">
+    <p><a class="btn btn-warning" href="{% url 'basicapp:update' pk=school_detail.pk %}">Update</a></p>
+    <p><a class="btn btn-danger" href="{% url 'basicapp:delete' pk=school_detail.pk %}">Delete</a></p>
+</div>
+
+{% endblock %}

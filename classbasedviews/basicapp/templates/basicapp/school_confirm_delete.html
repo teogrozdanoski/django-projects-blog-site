@@ -1,0 +1,11 @@
+{% extends "basicapp/basicapp_base.html" %}
+{% block body_block %}
+
+<h1>Are you sure that you want to delete {{ school.name }}?</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Delete">
+    <a href="{% url 'basicapp:detail' pk=school.pk %}">Cancel</a>
+</form>
+
+{% endblock %}

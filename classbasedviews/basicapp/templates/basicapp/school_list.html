@@ -1,0 +1,11 @@
+{% extends "basicapp/basicapp_base.html" %}
+{% block body_block %}
+
+<h1>Welcome to a list of all the schools</h1>
+<ol>
+    {% for s in schools %}
+        <h3><li><a href="{{ s.id }}">{{ s.name }}</a></li></h3>
+    {% endfor %}
+</ol>
+
+{% endblock %}
